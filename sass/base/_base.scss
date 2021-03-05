@@ -1,0 +1,73 @@
+/* reset de las propiedades del renderisado del navegador  */
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+
+/* configuracion para el HTML en rem y podes configuarar todas las medidas de mi proyecto
+en medidas relativas a esta unidad. */
+
+
+html{
+    /* porque 10px, pues por que ahora sabemos que 1 rem es exactamente 10 px,
+    porque 1rem es exactamente el tamaño de funte raiz.
+    y por que es mas facil divir por 10 que por 10.
+    10px/16px = 0.625 * 100 = 62.5% que seria tener el equivalente al tamaño raiz en el html de 10 px 
+    y el equivalente de 1 rem = 10px.
+    */
+    font-size: 62.5%; 
+
+    // @media (max-width: 600px){
+    //     font-size: 50%; //como analizamos realmente este tamaño de funte dentro del mixine
+    // }
+
+    // @media (max-width: 900px){
+    //     font-size: 50%;
+    // }
+
+    //Este orden es por que se inicia la query mas cercana al ancho minimo
+    // por esto bamos de arribaa hacia abajo.
+
+    //en movile first seria completamente al contrario.
+    
+
+    @include respond(tab-land){ // width < 900
+        font-size: 56.25%; // 1rem = 9px, 9/16 = 56.25%
+    }
+
+    @include respond(tab-port){// width < 600
+        font-size: 50%; // 1rem = 8px, 8/16 = 50%
+    }
+
+    @include respond(phone){// width < 600
+        font-size: 30%; // 1rem = 4.8px
+    }
+
+    @include respond(big-desktop){
+        font-size: 75%; // 1rem = 12px. 12/16 = 75%
+    }
+
+    
+
+
+
+}
+
+body{
+    box-sizing: border-box; /* no exeda los limites del padre en su configuracion */
+    padding: 3rem;
+    @include respond(tab-port){
+        padding: 0;
+    }
+
+}
+
+// la forma tradicional de escribir mediaqueris es definir la resolucion
+// y redefinir todo el caodigo en esa porcion de resolicio,
+// pero es algo que no haremos aqui....
+

@@ -1,0 +1,182 @@
+.navigation{
+
+    &__checkbox{
+        display: none;
+    }
+    //label
+    &__button{
+        background-color: $color-white;
+        height: 7rem;
+        width: 7rem;
+        position: fixed;
+        top: 6rem;
+        right: 6rem;
+        border-radius: 50%;
+        z-index: 2000;
+        box-shadow: 0 1rem 3rem rgba($color-black, .1);
+        text-align: center;
+        cursor: pointer;
+
+        @include respond(tab-port){
+            top: 4rem;
+            right: 4rem;
+        }
+
+        @include respond(phone){
+            top: 3rem;
+            right: 3rem;
+        }
+    }
+    // contenerdor del meanu
+    &__background{
+        height: 6rem;
+        width: 6rem;
+        border-radius: 50%;
+        position: fixed; //queda fijo, no es como absolute que sale flotando, pero tambien elimina el lemento del flujo y nos permite espesificar su posicion con un elemnto posinionado relativamente.
+        top: 6.5rem;
+        right: 6.5rem;
+        background-image: radial-gradient($color-primary-light, $color-primary-dark); //comienza ene l medio del elemento y se esparce radialmente.
+        z-index: 1000;
+        transition: transform .8s cubic-bezier(0.83, 0, 0.17, 1);
+
+        @include respond(tab-port){
+            top: 4.5rem;
+            right: 4.5rem;
+        }
+
+        @include respond(phone){
+            top: 3.5rem;
+            right: 3.5rem;
+        }
+
+        // transform: scale(50);
+
+    }
+    //la ventana emergente que se desplega cuando se activa el menu
+    &__nav{
+        height: 100vh;
+        position: fixed; //Al moverse con l scroll se mantega fija.
+        top: 0;
+        right: 0;
+        z-index: 1500;
+
+        //ocultando los elementos
+        opacity: 0;
+        width: 0;
+        // transition: opacity .5s; aqui pasa algo raro
+        transition: transform 0.8s cubic-bezier(0.68, -0.6, 0.32, 1.6); //Personaliza la transicion, mirar recursos para explorar.
+        
+    }
+
+    &__list{
+        @include elemtocentrado;
+        list-style: none;
+        text-align: center;
+        width: 100%; //se debe espesificar el ancho, para cuando se contre el div la lista se contraiga junto con el y no genere comportamientos extraños.
+
+    }
+
+    &__item{
+        margin: 1rem;
+
+    }
+
+    &__link{
+
+        &:link,
+        &:visited{
+            display: inline-block; // Para que funcione la aniamcion del desplazamiento en x
+            font-size: 3rem;
+            font-weight: 300;
+            padding: 1rem 2rem;
+            color: $color-white;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all .4s;
+
+            //aqui se genera el efecto de los item para cubrirlos de blanco
+            background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
+            background-size: 200%;
+        }
+
+        &:hover,
+        &:active{
+            background-position: 100%;
+            color: $color-primary;
+            transform: translateX(1rem);
+        }
+        
+    }
+
+    //Funcionalidades
+    &__checkbox:checked ~ &__background{
+        transform: scale(50);
+    }
+
+    &__checkbox:checked ~ &__nav{
+        opacity: 1;
+        width: 100%;
+    }
+
+
+    //ICON NAV
+
+    &__icon{
+        position: relative;
+        margin-top: 3.5rem;
+        &,
+        &::before,
+        &::after{
+            width: 3rem;
+            height: 2px;
+            background-color: $color-grey-dark-2;
+            display: inline-block;
+        }
+
+        &::before,
+        &::after{
+            content: "";
+            position: absolute;
+            left: 0;
+            transition: all 1.8s;
+        }
+
+        &::before{top: -.8rem}
+        &::after{top:.8rem}
+    }
+
+    //Animacion de contraccion del boton
+
+    &__button:hover &__icon::before{
+        top: -1rem;
+    }
+
+    &__button:hover &__icon::after{
+        top: 1rem;
+    }
+
+
+
+    //animacion de lineas
+    //(+) selecciona el hermano adyacente
+    //(~) selecciona cualquiera de los hermanos 
+    //cuando el check este selecciona su hermano y luego selecciona el icon
+    &__checkbox:checked + &__button &__icon{
+        background-color: transparent;
+    }
+
+    // los elmentos giran respacto a su centro, lo cual es particularmente
+    // util, pero se puede modificar con transform-origin: left o right
+    &__checkbox:checked + &__button &__icon::before{
+        top: 0;
+        transform: rotate(135deg);
+    }
+
+    &__checkbox:checked + &__button &__icon::after{
+        top: 0;
+        transform: rotate(-135deg);
+    }
+
+
+
+}

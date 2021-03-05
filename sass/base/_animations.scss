@@ -1,0 +1,47 @@
+@keyframes moveInleft{
+    0%{
+        opacity: 0;
+        transform: translate(-10rem);
+    }
+
+    80%{
+        transform: translateX(1.0rem);
+
+    }
+
+    100%{
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInRigth{
+    0%{
+        opacity: 0;
+        transform: translate(10rem);
+    }
+
+    80%{
+        transform: translateX(-1.0rem);
+
+    }
+
+    100%{
+        opacity: 1;
+        transform: translate(0px);
+    }
+}
+
+@keyframes moveInBtton{
+    0%{
+        opacity: 0;
+        transform: translateY(3.0rem);
+    }
+
+    
+
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

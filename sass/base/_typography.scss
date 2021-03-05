@@ -1,0 +1,106 @@
+
+
+body{
+    font-family: "Lato", sans-serif;
+    font-weight: 480;
+    /* font-size: 16px; */
+    line-height: 1.7;
+    color: $color-grey-dark;
+    
+}
+
+
+
+.heading-primary{
+    color: white;
+    text-transform: uppercase;
+
+    /* solocion para el temblor al iniciar la animacion */
+    backface-visibility: hidden;
+
+    &--main{
+        display: block;
+        font-size: 6rem;
+        font-weight: 400;
+        letter-spacing: 3.5rem;
+    
+        /* animacio */
+        animation: moveInleft 1s ease-out;
+        /* animation-name: moveInleft;
+        animation-duration: 1s;
+        animation-timing-function: ease-out; */
+    
+        /* animation-iteration-count: 3; numero de veces que sucedera la animacion */
+        /* animation-delay: 3s; */ /* espera 3 seg antes de comezar la animacion */
+
+        @include respond(phone){
+            letter-spacing: 1rem;
+            font-family: 5rem;
+        }
+    }
+
+    &--sub{
+        display: block;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 1.74rem;
+        margin: 0 0 3.0rem 0px;
+    
+        /* animacion */
+    
+        animation-name: moveInRigth;
+        animation-duration: 1s;
+        animation-timing-function: ease-out;
+
+        @include respond(phone){
+            letter-spacing: .5rem;
+            
+        }
+    }
+
+
+}
+
+.heading-secondary{
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    background-image: linear-gradient(to right, $color-primary-light,$color-primary-dark );
+    -webkit-background-clip: text; /* recorta el backgruod a lo que esta dentro de sucontenerdo */
+    color: transparent;
+    display: inline-block;
+    letter-spacing: .2rem;
+    transition: all .2s;
+
+    @include respond(tab-port){
+        font-size: 3rem;
+    }
+
+    @include respond(phone){
+        font-size: 2.5rem;
+    }
+
+
+
+    &:hover{
+        transform: skewY(2deg) skewX(15deg) scale(1.1);
+        text-shadow: .5rem 1rem 2rem rgba( $color-black, .2)  ;
+    }
+}
+
+
+
+
+.heading-tertiary{
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.paragraph{
+    font-size: 1.6rem;
+
+    &:not(:last-child){
+        margin-bottom: 3rem;
+    }
+}

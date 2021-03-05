@@ -1,0 +1,76 @@
+
+
+
+//Esto evita el desbordaminto al usar el float
+
+@mixin clearfix {
+    &::after{
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+@mixin elemtocentrado {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+//MEDIA QUERY MANAGER
+
+/*
+0-600PX:     Phone
+600-900px:   Tablet portraint
+900-1200px:  Tablet landscape
+[1200-1800] is where our normal styles apply
+1800px + :   Big desktop
+
+@content: directiva de contenido, nospermite pasar un bloque de codigo
+dentro de un mixin 
+
+*/
+
+
+/*
+$breackpoint argument choices:
+-phone
+-tab-port
+-tab-land
+-big-desktop
+
+ORDER: Base + typografy > general layout + grid > page layout > components
+*/
+
+
+// 1em = 16px
+// no usaremos px en las mediaquerys ya que si el tamaño de fuente del navegaro se cambia 
+// esas no se veran afectadas, sobre ems y rems hay una particularidad importante aqui ya que
+// los ems y rems en mediaquerys no se ven afectados por una configuracion de tamalo de fuente raiz,
+// esto no dice que los ems y rems se veran afectados de la funte raiz que biene por defecto en el navegador.
+
+@mixin respond ($breackpoint) {
+
+    @if $breackpoint == phone{
+        @media (max-width: 37.5em){ @content }; //pregunto si el ancho es menor a 600px
+    }
+
+    @if $breackpoint == tab-port{
+        @media (max-width: 56.25em){ @content };
+    }
+
+    @if $breackpoint == tab-land{
+        @media (max-width: 75em){ @content };
+    }
+
+    @if $breackpoint == big-desktop{
+        @media (min-width: 112.5rem){ @content };//el ancho minimo donde esto ocurrira es 1800
+    }
+}
+
+
+
+
